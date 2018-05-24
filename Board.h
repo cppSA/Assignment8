@@ -1,5 +1,5 @@
 /**
-*hidden file of class Board
+*Header file of class Board
 *Authors Alexey Titov and Shir Bentabou
 *Version 1.0
 **/
@@ -12,6 +12,14 @@
 #include "Cell.h"
 #include "OurException.h"
 using namespace std;
+
+
+struct RGB {
+  uint8_t red, green, blue;
+public:
+  RGB() {}
+  RGB(uint8_t red, uint8_t green, uint8_t blue): red(red), green(green), blue(blue) {}
+};
 
 class Board{
 private:

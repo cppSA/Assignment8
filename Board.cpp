@@ -94,22 +94,57 @@ Board& Board::operator=(Board& copy){
 
 //Draw function for Board class. Draws the game board.
 const string Board::draw(int n){
+    //dimentions for picture
+    const int dimx = n, dimy = n;
+    int cell_size = n / this->bound;    //defining cell size in board
+    int grid_width = cell_size / 10;    //defining grid width in board
+    int r_c,g_c,b_c;                    //variables for RGB
     //name for text file
     time_t now = time(0);
     char* dt = ctime(&now);
     string filename{dt};       //convert to string form
     filename=filename.substr (0,filename.length()-1);
-    filename+=".txt";
-    //write board to file
-    ofstream outfile (filename);
-    for (int i=0; i<this->bound; i++){
-
-        for (int j=0; j<this->bound;j++){
-            outfile << this->board[i][j].getValue();
+    filename+=".ppm";
+    ofstream imageFile(filename, ios::out | ios::binary);
+    imageFile << "P6" << endl << dimx <<" " << dimy << endl << 255 << endl;
+    RGB image[dimx*dimy];
+    //Background for grid
+    for (int j = 0; j < dimy; ++j)  {  // row
+        for (int i = 0; i < dimx; ++i) { // column
+            //0, 172, 230 - light blue for grid
+            image[dimx*j+i].red = (0);
+            image[dimx*j+i].green = (172);
+            image[dimx*j+i].blue = (230);
         }
-        outfile << endl;
     }
-    outfile.close();
+    //Painitng the board acoording to '.' or 'X' or 'O' in the original game board
+    for (int m=0; m<this->bound; m++)
+        for (int k=0; k<this->bound; k++){
+            char c = this->board[m][k].getValue();
+            if (c=='.'){
+                r_c=g_c=b_c=242;
+            }else
+                if(c=='X'){
+                    r_c=255;
+                    g_c=102;
+                    b_c=102;
+                }else{
+                    r_c=51;
+                    g_c=255;
+                    b_c=51;
+                }
+            //Coloring everything at once
+            for (int j = m*cell_size+grid_width; j < m*cell_size+cell_size-grid_width; ++j)  {  // row
+                for (int i = k*cell_size+grid_width; i < k*cell_size+cell_size-grid_width; ++i) { // column
+                    image[dimx*j+i].red = (r_c);
+                    image[dimx*j+i].green = (g_c);
+                    image[dimx*j+i].blue = (b_c);
+                }
+            }
+        }
+    //image processing
+    imageFile.write(reinterpret_cast<char*>(&image), 3*dimx*dimy);
+    imageFile.close();
     return filename;
 }
 
