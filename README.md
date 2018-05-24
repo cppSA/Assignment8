@@ -15,7 +15,7 @@ In this repository you will find 7 files regarding the seventh exercise given in
   - Makefile - is makefile we wrote for compilation.
 
 All 7 files were compiled and tested using the main included in this repository
-(taken from: [homework](https://github.com/erelsgl/ariel-cpp-5778/tree/master/week06-inheritance/homework)). 
+(taken from: [homework](https://github.com/erelsgl/ariel-cpp-5778/blob/master/week07-diamond-rtti/homework/homework.pdf)). 
 Please note the documentation throughout the code.
 
 Shir&Alexey
