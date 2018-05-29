@@ -128,7 +128,7 @@ const string Board::draw(int n){
                     r_c=255;
                     g_c=102;
                     b_c=102;
-                }else{
+                }else{          //'.'
                     r_c=51;
                     g_c=255;
                     b_c=51;
@@ -141,6 +141,40 @@ const string Board::draw(int n){
                     image[dimx*j+i].blue = (b_c);
                 }
             }
+            //'X'
+            if (c=='X'){
+                int left=k*cell_size+grid_width,right=k*cell_size+cell_size-grid_width-1;
+                int i=0;
+                for (int j = m*cell_size+grid_width; j < m*cell_size+cell_size-grid_width; ++j){
+                    //left
+                    image[dimx*j+left+i].red = (1);
+                    image[dimx*j+left+i].green = (1);
+                    image[dimx*j+left+i].blue = (1);
+                    //right
+                    image[dimx*j+right-i].red = (1);
+                    image[dimx*j+right-i].green = (1);
+                    image[dimx*j+right-i].blue = (1);
+                    i++;
+
+                } 
+            }else
+                if(c=='O'){
+                    double centre_y=(m*cell_size+grid_width)/2+(m*cell_size+cell_size-grid_width-1)/2,
+                           centre_x=(k*cell_size+grid_width)/2+(k*cell_size+cell_size-grid_width-1)/2,
+                           radius=cell_size/2-2*grid_width;
+                    for (int j = m*cell_size+grid_width; j < m*cell_size+cell_size-grid_width; ++j)  {  // row
+                        for (int i = k*cell_size+grid_width; i < k*cell_size+cell_size-grid_width; ++i) { // column
+                            double d=pow(centre_x-i,2)+pow(centre_y-j,2);
+                            d=sqrt (d);
+                            d=abs(d-radius);
+                            if(d<10){
+                                image[dimx*j+i].red = (1);
+                                image[dimx*j+i].green = (1);
+                                image[dimx*j+i].blue = (1);
+                            }
+                        }
+                    }
+                }
         }
     //image processing
     imageFile.write(reinterpret_cast<char*>(&image), 3*dimx*dimy);

@@ -8,6 +8,7 @@
 #include <fstream>
 #include <string>
 #include <list>
+#include <math.h>
 #include <ctime>
 #include "Cell.h"
 #include "OurException.h"
