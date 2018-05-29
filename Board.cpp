@@ -147,13 +147,13 @@ const string Board::draw(int n){
                 int i=0;
                 for (int j = m*cell_size+grid_width; j < m*cell_size+cell_size-grid_width; ++j){
                     //left
-                    image[dimx*j+left+i].red = (1);
-                    image[dimx*j+left+i].green = (1);
-                    image[dimx*j+left+i].blue = (1);
+                    image[dimx*j+left+i].red = (184);
+                    image[dimx*j+left+i].green = (0);
+                    image[dimx*j+left+i].blue = (230);
                     //right
-                    image[dimx*j+right-i].red = (1);
-                    image[dimx*j+right-i].green = (1);
-                    image[dimx*j+right-i].blue = (1);
+                    image[dimx*j+right-i].red = (184);
+                    image[dimx*j+right-i].green = (0);
+                    image[dimx*j+right-i].blue = (230);
                     i++;
 
                 } 
@@ -168,9 +168,9 @@ const string Board::draw(int n){
                             d=sqrt (d);
                             d=abs(d-radius);
                             if(d<10){
-                                image[dimx*j+i].red = (1);
-                                image[dimx*j+i].green = (1);
-                                image[dimx*j+i].blue = (1);
+                                image[dimx*j+i].red = (255);
+                                image[dimx*j+i].green = (255);
+                                image[dimx*j+i].blue = (153);
                             }
                         }
                     }
