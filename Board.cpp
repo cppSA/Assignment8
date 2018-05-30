@@ -105,6 +105,7 @@ const string Board::draw(int n){
     string filename{dt};       //convert to string form
     filename=filename.substr (0,filename.length()-1);
     replace( filename.begin(), filename.end(), ':', '-'); // replace all ':' to '-'
+    replace( filename.begin(), filename.end(), ' ', '_'); // replace all ':' to '-'
     filename+=".ppm";
     ofstream imageFile(filename, ios::out | ios::binary);
     imageFile << "P6" << endl << dimx <<" " << dimy << endl << 255 << endl;
