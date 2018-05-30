@@ -12,6 +12,7 @@
 #include <ctime>
 #include <stdio.h>
 #include <cstdlib>
+#include <cmath>
 #include <stdlib.h> 
 #include "Cell.h"
 #include "OurException.h"
