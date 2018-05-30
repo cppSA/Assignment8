@@ -205,22 +205,21 @@ istream& operator>> (istream& is,Board& b) {
     string line;
     int size;
     is>>line;
-    cout<<(int)line.length()<<endl;
     size=(int)line.length();
     Board tmp(size);
     b=tmp;
     for (int i=0; i<size; i++){
-        if (line[i]=='X' || line[i]=='O' || line[i]=='.')
+        //if (line[i]=='X' || line[i]=='O' || line[i]=='.')
             b[{0, i}] = line[i];    //needs to be checked
-        else
-            size--;
+        //else
+            //size--;
     }
-    tmp.bound=size;
+    //tmp.bound=size;
     int cur_line = 0;
     while(is>>line){
         cur_line++;
         for (int i=0; i<size && cur_line<size; i++){
-            if (line[i]=='X' || line[i]=='O' || line[i]=='.')
+            //if (line[i]=='X' || line[i]=='O' || line[i]=='.')
                 b[{cur_line, i}] = line[i];    //needs to be checked
         }
     }
