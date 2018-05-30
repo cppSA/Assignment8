@@ -147,6 +147,7 @@ const string Board::draw(int n){
                 }
             }
             //'X'
+            /*
             if (c=='X'){
                 int left=k*cell_size+grid_width,right=k*cell_size+cell_size-grid_width-1;
                 int i=0;
@@ -179,7 +180,7 @@ const string Board::draw(int n){
                             }
                         }
                     }
-                }
+                }*/
         }
     //image processing
     imageFile.write(reinterpret_cast<char*>(&image), 3*dimx*dimy);
