@@ -11,6 +11,7 @@
 #include <math.h>
 #include <ctime>
 #include <stdio.h>
+#include <cstdlib>
 #include <stdlib.h> 
 #include "Cell.h"
 #include "OurException.h"
