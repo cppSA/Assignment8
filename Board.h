@@ -4,6 +4,7 @@
 *Version 1.0
 **/
 //libraries
+#include <algorithm>
 #include <iostream>
 #include <fstream>
 #include <string>
