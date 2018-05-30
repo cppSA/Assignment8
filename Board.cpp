@@ -100,10 +100,16 @@ const string Board::draw(int n){
     int grid_width = cell_size / 10;    //defining grid width in board
     int r_c,g_c,b_c;                    //variables for RGB
     //name for text file
-    time_t now = time(0);
-    string filename= to_string(time(&now));
-    filename="board_"+filename;
-    filename+=".ppm";
+    // time_t now;
+    // struct tm * timeinfo;
+    // time ( &now );
+    // timeinfo = localtime ( &now );
+    // string filename= asctime (timeinfo);
+    // filename=filename.substr (0,filename.length()-1);
+    // replace( filename.begin(), filename.end(), ':', '-'); // replace all ':' to '-'
+    // replace( filename.begin(), filename.end(), ' ', '_'); // replace all ':' to '-'
+    //filename+=".ppm";
+    string filename="board"+to_string(this->bound)+".ppm";
     ofstream imageFile(filename, ios::out | ios::binary);
     imageFile << "P6" << endl << dimx <<" " << dimy << endl << 255 << endl;
     RGB image[dimx*dimy];
@@ -141,7 +147,6 @@ const string Board::draw(int n){
                 }
             }
             //'X'
-            /*
             if (c=='X'){
                 int left=k*cell_size+grid_width,right=k*cell_size+cell_size-grid_width-1;
                 int i=0;
@@ -175,7 +180,6 @@ const string Board::draw(int n){
                         }
                     }
                 }
-                */
         }
     //image processing
     imageFile.write(reinterpret_cast<char*>(&image), 3*dimx*dimy);
@@ -199,16 +203,18 @@ ostream& operator<< (ostream& os, const Board& b){
 //Operator '>>' overlaoding for board class.
 istream& operator>> (istream& is,Board& b) {
     string line;
+    int size;
     is>>line;
-    Board tmp((int)line.length());
+    size=(int)line.length();
+    Board tmp(size);
     b=tmp;
-    for (int i=0; i<line.length(); i++){
+    for (int i=0; i<size; i++){
         b[{0, i}] = line[i];    //needs to be checked
     }
     int cur_line = 0;
     while(is>>line){
         cur_line++;
-        for (int i=0; i<line.length(); i++){
+        for (int i=0; i<size && cur_line<size; i++){
             b[{cur_line, i}] = line[i];    //needs to be checked
         }
     }

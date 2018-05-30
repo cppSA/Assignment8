@@ -18,5 +18,15 @@ board3:
 board6:	
 	./a.out < board6.txt
 
+allboard:
+	./a.out < board1.txt
+	./a.out < board2.txt
+	./a.out < board3.txt
+	./a.out < board4.txt
+	./a.out < board5.txt
+	./a.out < board6.txt
+	./a.out < board7.txt
+	./a.out < board8.txt
+
 clean:
-	rm *.o a.out
+	rm *.o a.out *.ppm
