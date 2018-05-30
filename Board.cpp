@@ -101,11 +101,8 @@ const string Board::draw(int n){
     int r_c,g_c,b_c;                    //variables for RGB
     //name for text file
     time_t now = time(0);
-    char* dt = ctime(&now);
-    string filename{dt};       //convert to string form
-    filename=filename.substr (0,filename.length()-1);
-    replace( filename.begin(), filename.end(), ':', '-'); // replace all ':' to '-'
-    replace( filename.begin(), filename.end(), ' ', '_'); // replace all ':' to '-'
+    string filename= to_string(time(&now));
+    filename="board_"+filename;
     filename+=".ppm";
     ofstream imageFile(filename, ios::out | ios::binary);
     imageFile << "P6" << endl << dimx <<" " << dimy << endl << 255 << endl;
