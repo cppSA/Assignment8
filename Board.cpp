@@ -98,7 +98,7 @@ const string Board::draw(int n){
     const int dimx = n, dimy = n;
     int cell_size = n / this->bound;    //defining cell size in board
     int grid_width = cell_size / 10;    //defining grid width in board
-    int r_c,g_c,b_c;                    //variables for RGB
+    int r_c,g_c,b_c,r_cS,g_cS,b_cS;     //variables for RGB
     //name for text file
     string filename="board"+to_string(this->bound)+".ppm";
     ofstream imageFile(filename, ios::out | ios::binary);
@@ -140,11 +140,15 @@ const string Board::draw(int n){
                     }
                 }
             }else{
-                if (c=='.')
+                if (c=='.'){
                     r_c=g_c=b_c=242;
-                else{
+                    r_cS=g_cS=b_cS=242;
+                }else{
                     r_c=255;    g_c=102;    b_c=102;
+                    r_cS=184;   g_cS=0;     b_cS=230;
                 }
+                int left=k*cell_size+grid_width,right=k*cell_size+cell_size-grid_width-1;
+                int row=0;
                 //Coloring everything at once
                 for (int j = m*cell_size+grid_width; j < m*cell_size+cell_size-grid_width; ++j)  {  // row
                     for (int i = k*cell_size+grid_width; i < k*cell_size+cell_size-grid_width; ++i) { // column
@@ -152,22 +156,15 @@ const string Board::draw(int n){
                         image[dimx*j+i].green = (g_c);
                         image[dimx*j+i].blue = (b_c);
                     }
-                }
-                //'X'
-                if (c=='X'){
-                    int left=k*cell_size+grid_width,right=k*cell_size+cell_size-grid_width-1;
-                    int i=0;
-                    for (int j = m*cell_size+grid_width; j < m*cell_size+cell_size-grid_width; ++j){
-                        //left
-                        image[dimx*j+left+i].red = (184);
-                        image[dimx*j+left+i].green = (0);
-                        image[dimx*j+left+i].blue = (230);
-                        //right
-                        image[dimx*j+right-i].red = (184);
-                        image[dimx*j+right-i].green = (0);
-                        image[dimx*j+right-i].blue = (230);
-                        i++;
-                    } 
+                    //left
+                    image[dimx*j+left+row].red = (r_cS);
+                    image[dimx*j+left+row].green = (g_cS);
+                    image[dimx*j+left+row].blue = (230);
+                    //right
+                    image[dimx*j+right-row].red = (r_cS);
+                    image[dimx*j+right-row].green = (g_cS);
+                    image[dimx*j+right-row].blue = (b_cS);
+                    row++;
                 }
             }
         }
