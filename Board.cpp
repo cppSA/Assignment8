@@ -5,7 +5,6 @@
 **/
 //library
 #include "Board.h"
-#include <math.h>
 
 //Constructor that receives an int that defines the board size wanted
 Board::Board(int b){
