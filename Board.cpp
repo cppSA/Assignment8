@@ -205,7 +205,7 @@ istream& operator>> (istream& is,Board& b) {
     string line;
     int size;
     is>>line;
-    cout<<(int)line.length()<<endln;
+    cout<<(int)line.length()<<endl;
     size=(int)line.length();
     Board tmp(size);
     b=tmp;
