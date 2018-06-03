@@ -34,7 +34,7 @@ private:
 
 public:
     //Empty constructor for board class
-    Board(){}
+    Board(){this->bound=0;}
 
     //Constructor that receives an int that defines the board size wanted
     Board(int b);

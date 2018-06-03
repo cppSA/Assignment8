@@ -78,7 +78,8 @@ Board& Board::operator=(char c){
 
 //Operator '=' overloading for Board class. Copies another Board object.
 Board& Board::operator=(Board& copy){
-    delBoard();
+    if (this->bound!=0)
+        delBoard();
     this->bound=copy.bound;
     this->board=new Cell*[this->bound];
     for (int i=0; i<this->bound; i++){
